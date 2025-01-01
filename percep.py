@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pylab as plt
 
 def AND(x1, x2):
     w1, w2, theta = 0.5, 0.5, 0.7
@@ -42,6 +43,13 @@ def XOR(x1, x2):
     result = AND(s1, s2)
     return result
 
+def step_function(x):
+    y = x > 0
+    return y.astype(np.int_)
+
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
 print(AND_WITH_BIAS(0, 0))
 print(AND_WITH_BIAS(0, 1))
 print(AND_WITH_BIAS(1, 0))
@@ -62,8 +70,17 @@ print(XOR(0, 1))
 print(XOR(1, 0))
 print(XOR(1, 1))
 
+
+
 x = np.array([0, 1]) # input
 w = np.array([0.5, 0.5]) # weight
 b = -0.7 # bias
 
 print(np.sum(w * x) + b)
+
+x = np.arange(-5.0, 5.0, 0.1)
+# y = step_function(x)
+y = sigmoid(x)
+plt.plot(x, y)
+plt.ylim(-0.1, 1.1) # y 축 범위 지정
+plt.show()
