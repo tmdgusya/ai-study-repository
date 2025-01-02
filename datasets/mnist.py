@@ -1,4 +1,6 @@
 # coding: utf-8
+from jupyter_events.cli import console
+
 try:
     import urllib.request
 except ImportError:
@@ -8,6 +10,9 @@ import gzip
 import pickle
 import os
 import numpy as np
+import ssl
+
+ssl._create_default_https_context = ssl._create_unverified_context
 
 url_base = 'http://yann.lecun.com/exdb/mnist/'
 key_file = {
@@ -25,6 +30,9 @@ test_num = 10000
 img_dim = (1, 28, 28)
 img_size = 784
 
+def load_pkl():
+
+
 
 def _download(file_name):
     file_path = dataset_dir + "/" + file_name
@@ -33,6 +41,7 @@ def _download(file_name):
         return
 
     print("Downloading " + file_name + " ... ")
+    console.log(dataset_dir)
     urllib.request.urlretrieve(url_base + file_name, file_path)
     print("Done")
 
