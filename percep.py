@@ -50,6 +50,13 @@ def step_function(x):
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))
 
+def softmax(a):
+    exp_a = np.exp(a)
+    sum_exp_a = np.sum(exp_a)
+    y = exp_a / sum_exp_a
+
+    return y
+
 print(AND_WITH_BIAS(0, 0))
 print(AND_WITH_BIAS(0, 1))
 print(AND_WITH_BIAS(1, 0))
@@ -70,6 +77,14 @@ print(XOR(0, 1))
 print(XOR(1, 0))
 print(XOR(1, 1))
 
+a = np.array([0.3, 2.9, 4.0])
+exp_a = np.exp(a)
+print(exp_a)
+sum_exp_a = np.sum(exp_a)
+print(sum_exp_a)
+
+y = exp_a / sum_exp_a
+print(y)
 
 
 x = np.array([0, 1]) # input
