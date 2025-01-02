@@ -30,10 +30,6 @@ test_num = 10000
 img_dim = (1, 28, 28)
 img_size = 784
 
-def load_pkl():
-
-
-
 def _download(file_name):
     file_path = dataset_dir + "/" + file_name
 
@@ -61,7 +57,17 @@ def _load_label(file_name):
 
     return labels
 
+"""
+data = np.frombuffer(f.read(), np.uint8, offset=16)
+    - 이 줄은 gzip 파일에서 이미지 데이터를 읽어 1차원 NumPy 배열로 변환합니다.
+    - offset=16은 파일 헤더를 건너뛰고 실제 이미지 데이터부터 읽기 시작한다는 의미입니다.
 
+data = data.reshape(-1, img_size)
+    - 이 줄이 실제로 2D 이미지를 1D 배열로 변환하는 핵심 부분입니다.
+    - img_size는 784(28x28)로 정의되어 있습니다.
+    - -1은 NumPy가 자동으로 적절한 차원을 계산하도록 합니다. 
+        => 결과적으로 각 이미지는 784개의 픽셀 값을 가진 1차원 배열로 변환됩니다.
+"""
 def _load_img(file_name):
     file_path = dataset_dir + "/" + file_name
 
